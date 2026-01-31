@@ -69,7 +69,7 @@ export function FundCard({ fund }: FundCardProps) {
                   size="sm"
                   className={`h-6 px-3 text-xs flex-shrink-0 ${
                     fund.recommendation === 'Buy'
-                      ? 'bg-accent text-accent-foreground border-accent hover:bg-accent/90 hover:text-accent-foreground'
+                      ? 'border-transparent bg-transparent font-bold text-accent hover:bg-transparent hover:text-accent'
                       : 'bg-gray-600 border-gray-500 hover:bg-gray-500 text-white'
                   }`}
                 >
