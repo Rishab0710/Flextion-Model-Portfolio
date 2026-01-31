@@ -58,7 +58,7 @@ export function AnimatedContent({ sections }: AnimatedContentProps) {
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-white mb-1">{section.title}</h3>
-              <div className="text-gray-300 text-sm leading-relaxed">
+              <div className="text-gray-300 text-xs leading-relaxed">
                 {index < typingIndex ? section.content : (
                   <Typewriter
                     text={section.content}
