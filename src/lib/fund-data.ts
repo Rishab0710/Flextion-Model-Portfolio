@@ -43,6 +43,6 @@ export const fundsData: Fund[] = [
     flextionScore: 96.0,
     expectedRelativeReturns: 1.72,
     benchmark: 'Russell MidCap Growth TR',
-    logoUrl: 'https://picsum.photos/seed/mml/100/100',
+    logoUrl: 'https://fquatdata.s3.amazonaws.com/UAT/Logos/35550870.png',
   },
 ];
