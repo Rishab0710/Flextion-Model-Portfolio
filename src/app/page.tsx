@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -11,10 +12,8 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { generateAnswer, summarizeHistory } from "@/app/actions";
+import { generateAnswer } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel } from "@/components/ui/alert-dialog";
 
 const formSchema = z.object({
   query: z.string().min(3, "Query must be at least 3 characters long."),
@@ -30,30 +29,16 @@ type HistoryItem = {
   text: string;
 };
 
-const faqs = [
-  {
-    question: "What is FLEXTION?",
-    answer: "FLEXTION is a next-generation platform designed to enhance creativity and productivity through advanced artificial intelligence. It offers a suite of tools for content creation, data analysis, and workflow automation.",
-  },
-  {
-    question: "How do I reset my password?",
-    answer: "You can reset your password by navigating to the login page and clicking the 'Forgot Password' link. You will receive an email with instructions on how to set a new password.",
-  },
-  {
-    question: "What are the subscription plans available?",
-    answer: "We offer several subscription plans: Free, Pro, and Enterprise. The Free plan gives you basic access. The Pro plan unlocks advanced features for individual users, and the Enterprise plan provides custom solutions for teams and organizations. You can find more details on our pricing page.",
-  },
-  {
-    question: "Is there a free trial for the Pro plan?",
-    answer: "Yes, we offer a 14-day free trial for our Pro plan. This allows you to explore all the premium features before committing to a subscription. No credit card is required to start the trial.",
-  },
+const personas = [
+  { name: "Investment Advisor", icon: User },
+  { name: "High Net-Worth Individual", icon: User },
+  { name: "Family Office", icon: User },
+  { name: "Chief Investment Officer", icon: User },
 ];
 
 export default function Home() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [summary, setSummary] = useState<string | null>(null);
-  const [isSummarizing, setIsSummarizing] = useState(false);
   const { toast } = useToast();
 
   const {
@@ -90,32 +75,6 @@ export default function Home() {
     }
   };
 
-  const handleSummarize = async () => {
-    const userQueries = history.filter(item => item.type === 'user').map(item => item.text);
-    if (userQueries.length === 0) {
-      toast({
-        title: "History is empty",
-        description: "Ask some questions first to get a summary.",
-      });
-      return;
-    }
-    
-    setIsSummarizing(true);
-    try {
-      const result = await summarizeHistory(userQueries);
-      setSummary(result.summary);
-    } catch (error) {
-      console.error(error);
-      toast({
-        variant: "destructive",
-        title: "An error occurred",
-        description: "Failed to summarize history.",
-      });
-    } finally {
-      setIsSummarizing(false);
-    }
-  };
-
   return (
     <>
       <div className="flex flex-col min-h-dvh bg-background text-foreground">
@@ -130,8 +89,8 @@ export default function Home() {
           </Avatar>
         </header>
 
-        <main className="flex-1 grid md:grid-cols-[1fr_350px] gap-8 p-4 md:p-8">
-          <div className="flex flex-col gap-8">
+        <main className="flex-1 p-4 md:p-8">
+          <div className="flex flex-col gap-8 max-w-4xl mx-auto">
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="font-headline text-2xl flex items-center gap-2">
@@ -162,78 +121,41 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <div className="space-y-4">
-              <h2 className="font-headline text-2xl">Frequently Asked Questions</h2>
-              <Accordion type="single" collapsible className="w-full">
-                {faqs.map((faq, index) => (
-                  <AccordionItem value={`item-${index}`} key={index}>
-                    <AccordionTrigger>{faq.question}</AccordionTrigger>
-                    <AccordionContent>{faq.answer}</AccordionContent>
-                  </AccordionItem>
+            <div className="space-y-6 p-2">
+              {history.map((item, index) => (
+                <div key={index} className={`flex items-start gap-3 ${item.type === 'user' ? 'justify-end' : ''}`}>
+                  {item.type === 'ai' && <Avatar className="h-8 w-8 border border-primary"><AvatarFallback className="bg-primary/20"><Bot className="h-4 w-4 text-primary"/></AvatarFallback></Avatar>}
+                  <div className={`rounded-lg p-3 text-sm max-w-[80%] ${item.type === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+                    {item.text}
+                  </div>
+                  {item.type === 'user' && <Avatar className="h-8 w-8"><AvatarFallback><User className="h-4 w-4"/></AvatarFallback></Avatar>}
+                </div>
+              ))}
+              {isLoading && (
+                <div className="flex items-start gap-3">
+                  <Avatar className="h-8 w-8 border border-primary"><AvatarFallback className="bg-primary/20"><Bot className="h-4 w-4 text-primary"/></AvatarFallback></Avatar>
+                  <div className="rounded-lg p-3 text-sm bg-muted flex items-center space-x-2">
+                    <Loader className="animate-spin h-4 w-4" />
+                    <span>Thinking...</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-6 text-center">
+              <h2 className="font-headline text-2xl">Select a persona which fits you best</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+                {personas.map((persona) => (
+                  <Card key={persona.name} className="p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-muted transition-colors rounded-xl shadow-md">
+                    <persona.icon className="w-8 h-8 text-muted-foreground" />
+                    <p className="font-semibold text-center text-sm">{persona.name}</p>
+                  </Card>
                 ))}
-              </Accordion>
+              </div>
             </div>
           </div>
-          
-          <aside className="flex flex-col">
-            <Card className="shadow-lg flex-1 flex flex-col">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="font-headline text-xl">History</CardTitle>
-                <Button variant="outline" size="sm" onClick={handleSummarize} disabled={isSummarizing || history.filter(i => i.type === 'user').length === 0}>
-                  {isSummarizing ? <Loader className="animate-spin mr-2 h-4 w-4" /> : <Sparkles className="mr-2 h-4 w-4" />}
-                  Summarize
-                </Button>
-              </CardHeader>
-              <CardContent className="flex-1 overflow-y-auto pr-2">
-                <div className="space-y-6 p-2">
-                  {history.length === 0 ? (
-                    <p className="text-sm text-muted-foreground text-center py-8">Your conversation history will appear here.</p>
-                  ) : (
-                    history.map((item, index) => (
-                      <div key={index} className={`flex items-start gap-3 ${item.type === 'user' ? 'justify-end' : ''}`}>
-                        {item.type === 'ai' && <Avatar className="h-8 w-8 border border-primary"><AvatarFallback className="bg-primary/20"><Bot className="h-4 w-4 text-primary"/></AvatarFallback></Avatar>}
-                        <div className={`rounded-lg p-3 text-sm max-w-[80%] ${item.type === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                          {item.text}
-                        </div>
-                        {item.type === 'user' && <Avatar className="h-8 w-8"><AvatarFallback><User className="h-4 w-4"/></AvatarFallback></Avatar>}
-                      </div>
-                    ))
-                  )}
-                  {isLoading && (
-                    <div className="flex items-start gap-3">
-                      <Avatar className="h-8 w-8 border border-primary"><AvatarFallback className="bg-primary/20"><Bot className="h-4 w-4 text-primary"/></AvatarFallback></Avatar>
-                      <div className="rounded-lg p-3 text-sm bg-muted flex items-center space-x-2">
-                        <Loader className="animate-spin h-4 w-4" />
-                        <span>Thinking...</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          </aside>
         </main>
       </div>
-      
-      <AlertDialog open={!!summary} onOpenChange={(open) => !open && setSummary(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle className="font-headline flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" />
-              History Summary
-            </AlertDialogTitle>
-            <AlertDialogDescription>
-              Here is an AI-generated summary of your recent questions.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <div className="text-sm text-muted-foreground max-h-[400px] overflow-y-auto pr-4">
-            {summary}
-          </div>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Close</AlertDialogCancel>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </>
   );
 }
