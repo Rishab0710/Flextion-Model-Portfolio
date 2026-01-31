@@ -94,7 +94,7 @@ export default function Home() {
         <main className="flex-1 p-4 md:p-8">
           <div className="flex flex-col gap-8 max-w-4xl mx-auto">
             <div className="flex flex-col items-center text-center gap-6 py-8">
-              <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={240} height={48} style={{filter: 'brightness(0) invert(1)'}} />
+              <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={150} height={32} style={{filter: 'brightness(0) invert(1)'}} />
               <p className="text-xl text-muted-foreground">What do you need help with?</p>
               
               <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-2xl">
