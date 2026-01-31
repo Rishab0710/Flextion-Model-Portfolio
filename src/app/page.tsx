@@ -71,10 +71,9 @@ export default function Home() {
             <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={150} height={32} />
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden sm:inline text-sm font-medium text-foreground">Tanmay Purohit</span>
             <Avatar className="h-8 w-8">
               <AvatarFallback className="text-secondary-foreground">
-                TP
+                <User className="w-5 h-5" />
               </AvatarFallback>
             </Avatar>
           </div>
