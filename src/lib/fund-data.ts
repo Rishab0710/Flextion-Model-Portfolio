@@ -36,4 +36,13 @@ export const fundsData: Fund[] = [
     benchmark: 'Russell MidCap Growth TR',
     logoUrl: 'https://picsum.photos/seed/forum/100/100',
   },
+  {
+    id: '4',
+    name: 'MML Series Investment Fund: MML Mid Cap Growth Fund',
+    recommendation: 'Buy',
+    flextionScore: 96.0,
+    expectedRelativeReturns: 1.72,
+    benchmark: 'Russell MidCap Growth TR',
+    logoUrl: 'https://picsum.photos/seed/mml/100/100',
+  },
 ];
