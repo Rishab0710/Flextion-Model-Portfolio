@@ -60,7 +60,11 @@ export function FundCard({ fund }: FundCardProps) {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-6 px-3 text-xs bg-gray-600 border-gray-500 hover:bg-gray-500 text-white flex-shrink-0"
+                  className={`h-6 px-3 text-xs flex-shrink-0 ${
+                    fund.recommendation === 'Buy'
+                      ? 'bg-accent text-accent-foreground border-accent hover:bg-accent/90 hover:text-accent-foreground'
+                      : 'bg-gray-600 border-gray-500 hover:bg-gray-500 text-white'
+                  }`}
                 >
                   {fund.recommendation}
                 </Button>
