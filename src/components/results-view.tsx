@@ -43,13 +43,13 @@ const philosophySections: AnimatedSection[] = [
 
 export function ResultsView() {
   return (
-    <div className="container mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+    <div className="container mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
       <div className="lg:col-span-1 space-y-4">
         {fundsData.map((fund) => (
           <FundCard key={fund.id} fund={fund} />
         ))}
       </div>
-      <div className="lg:col-span-2 space-y-6">
+      <div className="lg:col-span-2 space-y-6 flex flex-col">
         <Card className="bg-[#303030] border-0 text-white">
           <CardHeader>
             <CardTitle className="text-xl font-semibold">
@@ -60,7 +60,7 @@ export function ResultsView() {
             <AnimatedContent sections={justificationSections} />
           </CardContent>
         </Card>
-        <Card className="bg-[#303030] border-0 text-white">
+        <Card className="bg-[#303030] border-0 text-white flex-grow">
           <CardHeader>
             <CardTitle className="text-xl font-semibold">
               How This Philosophy Enhances the 60/40 Model
