@@ -121,33 +121,15 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <div className="space-y-6 p-2">
-              {history.map((item, index) => (
-                <div key={index} className={`flex items-start gap-3 ${item.type === 'user' ? 'justify-end' : ''}`}>
-                  {item.type === 'ai' && <Avatar className="h-8 w-8 border border-primary"><AvatarFallback className="bg-primary/20"><Bot className="h-4 w-4 text-primary"/></AvatarFallback></Avatar>}
-                  <div className={`rounded-lg p-3 text-sm max-w-[80%] ${item.type === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                    {item.text}
-                  </div>
-                  {item.type === 'user' && <Avatar className="h-8 w-8"><AvatarFallback><User className="h-4 w-4"/></AvatarFallback></Avatar>}
-                </div>
-              ))}
-              {isLoading && (
-                <div className="flex items-start gap-3">
-                  <Avatar className="h-8 w-8 border border-primary"><AvatarFallback className="bg-primary/20"><Bot className="h-4 w-4 text-primary"/></AvatarFallback></Avatar>
-                  <div className="rounded-lg p-3 text-sm bg-muted flex items-center space-x-2">
-                    <Loader className="animate-spin h-4 w-4" />
-                    <span>Thinking...</span>
-                  </div>
-                </div>
-              )}
-            </div>
-
             <div className="space-y-6 text-center">
               <h2 className="font-headline text-2xl">Select a persona which fits you best</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
                 {personas.map((persona) => (
-                  <Card key={persona.name} className="p-4 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-muted transition-colors rounded-xl shadow-md">
-                    <persona.icon className="w-8 h-8 text-muted-foreground" />
+                  <Card 
+                    key={persona.name} 
+                    className="p-4 flex flex-col items-center justify-center gap-2 cursor-pointer bg-[hsl(27,15%,85%)] text-neutral-800 hover:bg-[hsl(27,15%,80%)] transition-colors rounded-xl shadow-md border-transparent"
+                  >
+                    <persona.icon className="w-8 h-8 text-neutral-600" />
                     <p className="font-semibold text-center text-sm">{persona.name}</p>
                   </Card>
                 ))}
