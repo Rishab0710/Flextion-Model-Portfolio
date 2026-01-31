@@ -83,7 +83,7 @@ export function FundCard({ fund }: FundCardProps) {
                   <TrendingUp className="h-4 w-4" />
                   <span>Expected Relative Returns:</span>
                 </div>
-                <span className="font-semibold">
+                <span className="font-semibold text-white bg-gray-700/50 px-2 py-0.5 rounded">
                   {fund.expectedRelativeReturns.toFixed(2)}
                 </span>
               </div>
