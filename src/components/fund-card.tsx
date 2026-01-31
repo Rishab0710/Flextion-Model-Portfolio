@@ -41,10 +41,10 @@ export function FundCard({ fund }: FundCardProps) {
       <CardContent>
         <div className="bg-[#393939] p-3 rounded-md">
           <div className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-300">
-            <PieChart className="h-4 w-4 text-accent" />
+            <PieChart className="h-4 w-4 text-[#cb6635]" />
             <span>
               Model Portfolio Allocation:{' '}
-              <span className="text-accent font-bold text-xs">
+              <span className="text-[#cb6635] font-bold text-xs">
                 {fund.targetAllocation}%
               </span>
             </span>
