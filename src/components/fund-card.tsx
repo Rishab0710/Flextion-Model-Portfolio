@@ -32,13 +32,6 @@ export function FundCard({ fund }: FundCardProps) {
             {fund.name}
           </CardTitle>
           <div className="flex items-center gap-2 shrink-0">
-            <Image
-              src="https://webapp.flextion.ai/assets/img/laodingfl-new.png"
-              alt="Flextion Logo"
-              width={20}
-              height={20}
-              className="h-5 w-5"
-            />
             <Bookmark className="h-5 w-5 text-gray-400" />
             <Expand className="h-5 w-5 text-gray-400" />
           </div>
