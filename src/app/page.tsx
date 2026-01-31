@@ -95,10 +95,10 @@ export default function Home() {
         <main className="flex-1 p-4 md:p-8">
           <div className="flex flex-col gap-8 max-w-4xl mx-auto">
             <div className="flex flex-col items-center text-center gap-4 py-8">
-              <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={150} height={32} />
+              <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={200} height={42} />
               <p className="text-lg text-muted-foreground">What do you need help with?</p>
               
-              <div className="w-full max-w-2xl flex flex-col items-center gap-3">
+              <div className="w-full max-w-2xl flex flex-col items-start gap-3">
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full">
                   <div className="relative">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
