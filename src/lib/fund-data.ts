@@ -1,3 +1,5 @@
+import { PlaceHolderImages } from './placeholder-images';
+
 export type Fund = {
   id: string;
   name: string;
@@ -8,6 +10,10 @@ export type Fund = {
   logoUrl: string;
 };
 
+const getImage = (id: string) =>
+  PlaceHolderImages.find((img) => img.id === id)?.imageUrl ||
+  'https://placehold.co/100x100';
+
 export const fundsData: Fund[] = [
   {
     id: '1',
@@ -16,7 +22,7 @@ export const fundsData: Fund[] = [
     flextionScore: 93.07,
     expectedRelativeReturns: 5.2,
     benchmark: 'Russell 1000 Growth TR',
-    logoUrl: 'https://picsum.photos/seed/columbia/100/100',
+    logoUrl: getImage('columbia-funds-logo'),
   },
   {
     id: '2',
@@ -25,7 +31,7 @@ export const fundsData: Fund[] = [
     flextionScore: 96.38,
     expectedRelativeReturns: 5.37,
     benchmark: 'Russell 3000 Growth TR',
-    logoUrl: 'https://picsum.photos/seed/fidelity/100/100',
+    logoUrl: getImage('fidelity-advisor-logo'),
   },
   {
     id: '3',
@@ -34,7 +40,7 @@ export const fundsData: Fund[] = [
     flextionScore: 97.1,
     expectedRelativeReturns: 1.61,
     benchmark: 'Russell MidCap Growth TR',
-    logoUrl: 'https://picsum.photos/seed/forum/100/100',
+    logoUrl: getImage('forum-funds-logo'),
   },
   {
     id: '4',
@@ -43,6 +49,6 @@ export const fundsData: Fund[] = [
     flextionScore: 96.0,
     expectedRelativeReturns: 1.72,
     benchmark: 'Russell MidCap Growth TR',
-    logoUrl: 'https://fquatdata.s3.amazonaws.com/UAT/Logos/35550870.png',
+    logoUrl: getImage('mml-series-logo'),
   },
 ];
