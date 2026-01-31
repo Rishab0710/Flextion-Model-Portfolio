@@ -6,6 +6,7 @@ import {
   Bookmark,
   Expand,
   GitMerge,
+  PieChart,
   Target,
   TrendingUp,
 } from 'lucide-react';
@@ -39,9 +40,15 @@ export function FundCard({ fund }: FundCardProps) {
       </CardHeader>
       <CardContent>
         <div className="bg-[#393939] p-3 rounded-md">
-          <p className="text-sm font-semibold mb-2 text-gray-300">
-            Model Portfolio Allocation: {fund.targetAllocation}%
-          </p>
+          <div className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-300">
+            <PieChart className="h-4 w-4" />
+            <span>
+              Model Portfolio Allocation:{' '}
+              <span className="bg-accent text-accent-foreground font-bold px-1.5 py-0.5 rounded-sm text-xs">
+                {fund.targetAllocation}%
+              </span>
+            </span>
+          </div>
           <div className="flex gap-4 items-center">
             <Image
               src={fund.logoUrl}
