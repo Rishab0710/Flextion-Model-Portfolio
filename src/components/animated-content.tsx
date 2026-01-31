@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react';
 
-function Typewriter({ text, speed = 10, onComplete }: { text: string; speed?: number; onComplete?: () => void; }) {
+function Typewriter({ text, speed = 5, onComplete }: { text: string; speed?: number; onComplete?: () => void; }) {
   const [displayedText, setDisplayedText] = useState('');
 
   useEffect(() => {
+    setDisplayedText('');
     let i = 0;
     const intervalId = setInterval(() => {
       if (i < text.length) {
@@ -24,6 +25,7 @@ function Typewriter({ text, speed = 10, onComplete }: { text: string; speed?: nu
 }
 
 export interface AnimatedSection {
+  icon: React.ComponentType<{ className?: string }>;
   title: string;
   content: string;
 }
@@ -42,23 +44,29 @@ export function AnimatedContent({ sections }: AnimatedContentProps) {
   };
 
   return (
-    <div className="space-y-4 text-gray-300 text-sm leading-relaxed">
+    <div className="space-y-6">
       {sections.map((section, index) => {
         if (index > typingIndex) {
           return null;
         }
+        const Icon = section.icon;
 
         return (
-          <div key={index}>
-            <h3 className="font-semibold text-white mb-1">{section.title}</h3>
-            <p>
-              {index < typingIndex ? section.content : (
-                <Typewriter
-                  text={section.content}
-                  onComplete={handleComplete}
-                />
-              )}
-            </p>
+          <div key={index} className="flex gap-4 items-start">
+            <div className="bg-white/10 text-accent p-2 rounded-lg mt-1 shrink-0">
+              <Icon className="w-5 h-5" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-white mb-1">{section.title}</h3>
+              <div className="text-gray-300 text-sm leading-relaxed">
+                {index < typingIndex ? section.content : (
+                  <Typewriter
+                    text={section.content}
+                    onComplete={handleComplete}
+                  />
+                )}
+              </div>
+            </div>
           </div>
         );
       })}
