@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Loader, User, Search, Send, History, Check } from "lucide-react";
+import { User, Search, Send, History, Check } from "lucide-react";
 import Image from "next/image";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -13,6 +13,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { ResultsView } from "@/components/results-view";
+import { LoadingView } from "@/components/loading-view";
 
 const formSchema = z.object({
   query: z.string().min(3, "Query must be at least 3 characters long."),
@@ -45,12 +46,13 @@ export default function Home() {
     setIsLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Simulate API call for 5 seconds
+      await new Promise((resolve) => setTimeout(resolve, 5000));
       setShowResults(true);
       reset();
     } catch (error) {
       console.error(error);
+      setShowResults(false);
       toast({
         variant: "destructive",
         title: "An error occurred",
@@ -78,11 +80,13 @@ export default function Home() {
           </div>
         </header>
 
-        <main className="flex-1">
-          {showResults ? (
+        <main className="flex-1 flex items-center justify-center">
+          {isLoading ? (
+            <LoadingView />
+          ) : showResults ? (
             <ResultsView />
           ) : (
-            <div className="p-4 md:p-8">
+            <div className="p-4 md:p-8 w-full">
               <div className="flex flex-col gap-8 max-w-4xl mx-auto">
                 <div className="flex flex-col items-center text-center gap-4 py-8">
                   <Image
@@ -106,7 +110,7 @@ export default function Home() {
                           autoComplete="off"
                         />
                         <Button type="submit" variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full w-10 h-10 text-muted-foreground hover:bg-accent" disabled={isLoading}>
-                          {isLoading ? <Loader className="animate-spin" /> : <Send className="h-5 w-5" />}
+                          <Send className="h-5 w-5" />
                         </Button>
                       </div>
                       {errors.query && <p className="text-xs text-destructive mt-2 text-left pl-4">{errors.query.message}</p>}
