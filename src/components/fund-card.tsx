@@ -29,7 +29,7 @@ export function FundCard({ fund }: FundCardProps) {
     <Card className="bg-[#303030] border-0 text-white rounded-lg overflow-hidden">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-start">
-          <CardTitle className="text-sm font-medium leading-tight pr-4 truncate">
+          <CardTitle className="text-sm font-medium leading-tight pr-4">
             {fund.name}
           </CardTitle>
           <div className="flex items-center gap-2 shrink-0">
