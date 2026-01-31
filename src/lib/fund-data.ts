@@ -3,6 +3,7 @@ import { PlaceHolderImages } from './placeholder-images';
 export type Fund = {
   id: string;
   name: string;
+  targetAllocation: number;
   recommendation: 'Buy' | 'Hold' | 'Sell';
   flextionScore: number;
   expectedRelativeReturns: number;
@@ -18,6 +19,7 @@ export const fundsData: Fund[] = [
   {
     id: '1',
     name: 'Columbia Select Large Cap Growth Fund',
+    targetAllocation: 35,
     recommendation: 'Buy',
     flextionScore: 93.07,
     expectedRelativeReturns: 5.2,
@@ -27,6 +29,7 @@ export const fundsData: Fund[] = [
   {
     id: '2',
     name: 'Fidelity Advisor Equity Growth Fund',
+    targetAllocation: 25,
     recommendation: 'Buy',
     flextionScore: 96.38,
     expectedRelativeReturns: 5.37,
@@ -36,6 +39,7 @@ export const fundsData: Fund[] = [
   {
     id: '3',
     name: 'DF Dent MidCap Growth Fund',
+    targetAllocation: 25,
     recommendation: 'Buy',
     flextionScore: 97.1,
     expectedRelativeReturns: 1.61,
@@ -45,6 +49,7 @@ export const fundsData: Fund[] = [
   {
     id: '4',
     name: 'MML Mid Cap Growth Fund',
+    targetAllocation: 15,
     recommendation: 'Buy',
     flextionScore: 96.0,
     expectedRelativeReturns: 1.72,

@@ -39,8 +39,8 @@ export function FundCard({ fund }: FundCardProps) {
       </CardHeader>
       <CardContent>
         <div className="bg-[#393939] p-3 rounded-md">
-          <p className="text-xs text-gray-400 mb-2 font-light">
-            Target Allocation : 35%
+          <p className="text-xs text-gray-400 mb-2 font-semibold">
+            Target Allocation : {fund.targetAllocation}%
           </p>
           <div className="flex gap-4 items-center">
             <Image
