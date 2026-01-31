@@ -18,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { FlextionXLogo } from './flextion-x-logo';
 
 interface FundCardProps {
   fund: Fund;
@@ -33,7 +32,13 @@ export function FundCard({ fund }: FundCardProps) {
             {fund.name}
           </CardTitle>
           <div className="flex items-center gap-2 shrink-0">
-            <FlextionXLogo className="h-5 w-5" />
+            <Image
+              src="https://webapp.flextion.ai/assets/img/laodingfl-new.png"
+              alt="Flextion Logo"
+              width={20}
+              height={20}
+              className="h-5 w-5"
+            />
             <Bookmark className="h-5 w-5 text-gray-400" />
             <Expand className="h-5 w-5 text-gray-400" />
           </div>
@@ -81,7 +86,9 @@ export function FundCard({ fund }: FundCardProps) {
                   <TrendingUp className="h-4 w-4" />
                   <span>Expected Relative Returns:</span>
                 </div>
-                <span className="font-semibold">{fund.expectedRelativeReturns.toFixed(2)}</span>
+                <span className="font-semibold">
+                  {fund.expectedRelativeReturns.toFixed(2)}
+                </span>
               </div>
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-gray-300">
