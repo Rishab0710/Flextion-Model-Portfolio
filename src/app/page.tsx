@@ -112,11 +112,11 @@ export default function Home() {
               </form>
 
               <div className="flex items-center gap-2">
-                <Button variant="secondary" className="rounded-full bg-[hsl(27,15%,85%)] text-neutral-800 hover:bg-[hsl(27,15%,80%)]">
+                <Button variant="secondary" className="rounded-full">
                   <Check className="mr-2 h-4 w-4" />
                   FAQ
                 </Button>
-                <Button variant="secondary" className="rounded-full bg-[hsl(27,15%,85%)] text-neutral-800 hover:bg-[hsl(27,15%,80%)]">
+                <Button variant="secondary" className="rounded-full">
                   <History className="mr-2 h-4 w-4" />
                   History
                 </Button>
@@ -129,9 +129,9 @@ export default function Home() {
                 {personas.map((persona) => (
                   <Card 
                     key={persona.name} 
-                    className="p-4 flex flex-col items-center justify-center gap-2 cursor-pointer bg-[hsl(27,15%,85%)] text-neutral-800 hover:bg-[hsl(27,15%,80%)] transition-colors rounded-xl shadow-md border-transparent"
+                    className="p-4 flex flex-col items-center justify-center gap-2 cursor-pointer bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors rounded-xl shadow-md border-transparent"
                   >
-                    <persona.icon className="w-8 h-8 text-neutral-600" />
+                    <persona.icon className="w-8 h-8" />
                     <p className="font-semibold text-center text-sm">{persona.name}</p>
                   </Card>
                 ))}
