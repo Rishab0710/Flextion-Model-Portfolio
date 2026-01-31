@@ -77,15 +77,18 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col min-h-dvh bg-background text-foreground">
-        <header className="sticky top-0 z-50 flex items-center justify-between w-full h-16 px-4 border-b shrink-0 bg-background/95 backdrop-blur-sm md:px-6">
+        <header className="sticky top-0 z-50 flex items-center justify-between w-full h-16 px-4 border-b shrink-0 bg-background md:px-6">
           <div className="flex items-center gap-2">
-            <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={150} height={32} />
+            <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={150} height={32} style={{filter: 'brightness(0) invert(1)'}} />
           </div>
-          <Avatar className="h-8 w-8">
-            <AvatarFallback>
-              <User className="h-4 w-4" />
-            </AvatarFallback>
-          </Avatar>
+          <div className="flex items-center gap-4">
+            <span className="hidden sm:inline text-sm font-medium text-foreground">Tanmay Purohit</span>
+            <Avatar className="h-8 w-8">
+              <AvatarFallback className="text-secondary-foreground">
+                TP
+              </AvatarFallback>
+            </Avatar>
+          </div>
         </header>
 
         <main className="flex-1 p-4 md:p-8">
@@ -100,11 +103,11 @@ export default function Home() {
                   <Input
                     {...register("query")}
                     placeholder="Ask a Question"
-                    className="w-full rounded-full bg-background border-2 border-border h-14 pl-12 pr-14 text-base"
+                    className="w-full rounded-full bg-[hsl(0,3%,21%)] border-input h-14 pl-12 pr-14 text-base"
                     disabled={isLoading}
                     autoComplete="off"
                   />
-                  <Button type="submit" variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full w-10 h-10 text-muted-foreground hover:bg-white/5" disabled={isLoading}>
+                  <Button type="submit" variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full w-10 h-10 text-muted-foreground hover:bg-accent" disabled={isLoading}>
                     {isLoading ? <Loader className="animate-spin" /> : <Send className="h-5 w-5" />}
                   </Button>
                 </div>
@@ -125,11 +128,11 @@ export default function Home() {
 
             <div className="space-y-6 text-center">
               <h2 className="font-headline text-2xl">Select a persona which fits you best</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
                 {personas.map((persona) => (
                   <Card 
                     key={persona.name} 
-                    className="p-4 flex flex-col items-center justify-center gap-2 cursor-pointer bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors rounded-xl shadow-md border-transparent"
+                    className="p-4 flex flex-col items-center justify-center gap-2 cursor-pointer bg-card text-card-foreground hover:bg-accent transition-colors rounded-xl shadow-md border-transparent"
                   >
                     <persona.icon className="w-8 h-8" />
                     <p className="font-semibold text-center text-sm">{persona.name}</p>
