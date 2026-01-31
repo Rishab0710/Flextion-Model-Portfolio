@@ -79,7 +79,7 @@ export default function Home() {
       <div className="flex flex-col min-h-dvh bg-background text-foreground">
         <header className="sticky top-0 z-50 flex items-center justify-between w-full h-16 px-4 border-b shrink-0 bg-background md:px-6">
           <div className="flex items-center gap-2">
-            <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={150} height={32} style={{filter: 'brightness(0) invert(1)'}} />
+            <Image src="https://webapp.flextion.ai/assets/img/logo-ani-svg.svg" alt="FLEXTION Logo" width={150} height={32} />
           </div>
           <div className="flex items-center gap-4">
             <span className="hidden sm:inline text-sm font-medium text-foreground">Tanmay Purohit</span>
