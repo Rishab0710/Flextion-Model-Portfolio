@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -32,8 +31,8 @@ type HistoryItem = {
 
 const faqs = [
   {
-    question: "What is FlexAI?",
-    answer: "FlexAI is a next-generation platform designed to enhance creativity and productivity through advanced artificial intelligence. It offers a suite of tools for content creation, data analysis, and workflow automation.",
+    question: "What is FLEXTION?",
+    answer: "FLEXTION is a next-generation platform designed to enhance creativity and productivity through advanced artificial intelligence. It offers a suite of tools for content creation, data analysis, and workflow automation.",
   },
   {
     question: "How do I reset my password?",
@@ -122,7 +121,7 @@ export default function Home() {
         <header className="sticky top-0 z-50 flex items-center justify-between w-full h-16 px-4 border-b shrink-0 bg-background/95 backdrop-blur-sm md:px-6">
           <div className="flex items-center gap-2">
             <Bot className="h-6 w-6 text-primary" />
-            <h1 className="text-lg font-semibold font-headline">FlexAI Support</h1>
+            <h1 className="text-xl font-semibold font-headline">FLEXTION</h1>
           </div>
           <Avatar className="h-8 w-8">
             <AvatarFallback>

@@ -4,8 +4,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'FlexAI Support',
-  description: 'AI-powered support for FlexAI',
+  title: 'FLEXTION',
+  description: 'AI-powered support for FLEXTION',
 };
 
 export default function RootLayout({
